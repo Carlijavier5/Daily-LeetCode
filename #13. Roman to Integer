@@ -1,0 +1,39 @@
+#13. Roman to Integer
+
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        prev = "";
+        total = 0;
+        for i in s:
+            if i == "M" and prev != "C":
+                total += 1000;
+            elif i == "M" and prev == "C":
+                total += 800;
+            elif i == "D" and prev != "C":
+                total += 500;
+            elif i == "D" and prev == "C":
+                total += 300;
+            elif i == "C" and prev != "X":
+                total += 100;
+            elif i == "C" and prev == "X":
+                total += 80;
+            elif i == "L" and prev != "X":
+                total += 50;
+            elif i == "L" and prev == "X":
+                total += 30;
+            elif i == "X" and prev != "I":
+                total += 10;
+            elif i == "X" and prev == "I":
+                total += 8;
+            elif i == "V" and prev != "I":
+                total += 5;
+            elif i == "V" and prev == "I":
+                total += 3;
+            else:
+                total += 1;
+            prev = i;
+        return total
