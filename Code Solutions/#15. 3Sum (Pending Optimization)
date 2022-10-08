@@ -1,0 +1,12 @@
+#15. 3Sum
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        bongoList = [];
+        for i in range(len(nums)):
+            for x in range(i+1,len(nums)):
+                for y in range(x+1,len(nums)):
+                    check = sorted([nums[i], nums[x], nums[y]]);
+                    if sum(check) == 0 and (check in bongoList) == False:
+                            bongoList.append(check);
+        return bongoList;
