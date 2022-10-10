@@ -1,4 +1,4 @@
-#1328. Break Palindrome
+1328. Break a Palindrome
 
 class Solution:
     def breakPalindrome(self, palindrome: str) -> str:
