@@ -1,0 +1,15 @@
+#1328. Break Palindrome
+
+class Solution:
+    def breakPalindrome(self, palindrome: str) -> str:
+        for i in range(len(palindrome)):
+            if palindrome[i] != 'a':
+                newStr = palindrome[:i]+'a'+palindrome[i+1:]
+                if newStr != newStr[::-1]:
+                    return newStr;
+        for i in reversed(range(len(palindrome))):
+            if palindrome[i] == 'a':
+                newStr = palindrome[:i]+'b'+palindrome[i+1:]
+                if newStr != newStr[::-1]:
+                    return newStr;
+        return ""
