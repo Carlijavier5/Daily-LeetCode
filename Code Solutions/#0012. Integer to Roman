@@ -1,0 +1,46 @@
+#0012. Integer to Roman
+
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        s = str(num)[::-1];
+        d4 = "";
+        d3 = "";
+        d2 = "";
+        d1 = int(s[0]);
+        if len(s) > 3:
+            d4 = 'M'*int(s[3]);
+        if len(s) > 2:
+            d3 = int(s[2]);
+            if d3 == 4:
+                d3 = 'CD';
+            elif d3 == 5:
+                d3 = 'D';
+            elif d3 == 9:
+                d3 = 'CM';
+            elif d3 < 4:
+                d3 = 'C'*d3;
+            else:
+                d3 = 'D'+'C'*(d3-5);
+        if len(s) > 1:
+            d2 = int(s[1]);
+            if d2 == 4:
+                d2 = 'XL';
+            elif d2 == 5:
+                d2 = 'L';
+            elif d2 == 9:
+                d2 = 'XC';
+            elif d2 < 4:
+                d2 = 'X'*d2;
+            else:
+                d2 = 'L'+'X'*(d2-5);
+        if d1 == 4:
+            d1 = 'IV';
+        elif d1 == 5:
+            d1 = 'V';
+        elif d1 == 9:
+            d1 = 'IX';
+        elif d1 < 4:
+            d1 = 'I'*d1;
+        else:
+            d1 = 'V'+'I'*(d1-5);
+        return d4+d3+d2+d1;
