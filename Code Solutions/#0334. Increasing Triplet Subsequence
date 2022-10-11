@@ -1,0 +1,17 @@
+#0334. Increasing Triplet Subsequence
+
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        if len(set(nums)) < 3:
+            return False;
+        for i in range(len(nums)):
+            if i < len(nums)-1:
+                for x in range(i+1,len(nums)):
+                    if nums[i] < nums[x] and x < len(nums)-1:
+                        check = sorted(nums[x+1:],reverse=True);
+                        for y in check:
+                            if nums[x] >= y:
+                                break;
+                            else:
+                                return True;
+        return False;
