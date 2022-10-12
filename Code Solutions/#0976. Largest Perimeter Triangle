@@ -1,0 +1,11 @@
+#0976. Largest Perimeter Triangle
+
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nL = sorted(nums,reverse=True);
+        for i in range(len(nL)-2):
+            if nL[i] < nL[i+1] + nL[i+2]:
+                return nL[i] + nL[i+1] + nL[i+2];
+            if nL[i] == nL[i+1] and nL[i] == nL[i+2]:
+                return nL[i]*3
+        return 0;
