@@ -1,0 +1,13 @@
+#0014. Longest Common Prefix
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        prefLen = len(min(strs, key=len));
+        for i in range(1,(len(strs))):
+            for x in range(len(strs[i][:prefLen])):
+                try:
+                    if not (strs[0][:prefLen][x] == strs[i][:prefLen][x]):
+                        prefLen = x;
+                except:
+                    break;
+        return (strs[0][:prefLen]);
