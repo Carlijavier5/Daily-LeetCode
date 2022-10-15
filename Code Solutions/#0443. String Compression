@@ -1,0 +1,33 @@
+#0443. String Compression
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        count = 1;
+        fixes = [];
+        i = 0;
+        while i < len(chars):
+            if i < len(chars)-1:
+                for x in range(i+1,len(chars)):
+                    if chars[x] == chars[i]:
+                        count += 1;
+                        if x == len(chars)-1:
+                            fixes.append(chars[i]);
+                            i += count-1;
+                            for y in str(count):
+                                fixes.append(y);
+                            break;
+                    else:
+                        fixes.append(chars[i]);
+                        i += count-1;
+                        if count > 1:
+                            for y in str(count):
+                                fixes.append(y);
+                        count = 1;
+                        break;
+            else:
+                fixes.append(chars[-1]);
+            i += 1;
+        chars.clear();
+        for i in fixes:
+            chars.append(i);
+        return len(chars);
