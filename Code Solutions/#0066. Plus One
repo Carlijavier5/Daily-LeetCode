@@ -1,0 +1,12 @@
+#0066. Plus One
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        nL = [];
+        for i in digits:
+            nL.append(str(i));
+        nStr = str(int(''.join(nL))+1);
+        digits.clear();
+        for i in nStr:
+            digits.append(int(i));
+        return digits;
