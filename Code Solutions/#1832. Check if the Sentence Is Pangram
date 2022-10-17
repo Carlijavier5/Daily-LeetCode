@@ -1,0 +1,11 @@
+#1832. Check if the Sentence Is Pangram
+
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        dictionary = {"a":True,"b":True,"c":True,"d":True,"e":True,"f":True,"g":True,"h":True,"i":True,"j":True,"k":True,"l":True,"m":True,"n":True,"o":True,"p":True,"q":True,"r":True,"s":True,"t":True,"u":True,"v":True,"w":True,"x":True,"y":True,"z":True};
+        for i in sentence:
+            dictionary[i] = False;
+        for i in dictionary:
+            if dictionary[i] == True:
+                return False;
+        return True;
