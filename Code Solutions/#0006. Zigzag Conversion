@@ -1,0 +1,29 @@
+#0006. Zigzag Conversion
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        matrix = {};
+        pointer = 0;
+        state = "Descending";
+        for i in range(numRows):
+            matrix[i] = [];
+        if numRows > 1:
+            for i in s:
+                matrix[pointer].append(i);
+                if state == "Descending" and pointer != numRows-1:
+                    pointer += 1;
+                elif state == "Descending" and pointer == numRows-1:
+                    state = "Ascending";
+                    pointer -= 1;
+                elif state == "Ascending" and pointer != 0:
+                    pointer -= 1;
+                elif state == "Ascending" and pointer == 0:
+                    state = "Descending";
+                    pointer += 1;
+            print(matrix);
+            lstr = [];
+            for i in range(numRows):
+                lstr.append("".join(matrix[i]));
+            return "".join(lstr);
+        else:
+            return s;
