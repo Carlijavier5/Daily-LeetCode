@@ -1,0 +1,35 @@
+#0067. Add Binary
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        a = list(a[::-1]);
+        b = list(b[::-1]);
+        c = [];
+        extra = 0;
+        i = 0;
+        limit = max(len(a),len(b));
+        if limit == len(a):
+            check = a;
+        elif limit == len(b):
+            check = b;
+        while i < limit:
+            try:
+                res = int(a[i]) + int(b[i]) + extra;
+                extra = 0;
+                if res == 2:
+                    res = 0;
+                    extra = 1;
+                elif res == 3:
+                    res = 1;
+                    extra = 1;
+            except:
+                res = int(check[i]) + extra;
+                extra = 0;
+                if res == 2:
+                    res = 0;
+                    extra = 1;
+            c.append(str(res));
+            if i == limit - 1 and extra == 1:
+                c.append("1");
+            i += 1;
+        return ''.join(c)[::-1];
