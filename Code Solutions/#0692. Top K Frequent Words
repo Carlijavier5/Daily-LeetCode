@@ -1,0 +1,20 @@
+#0692. Top K Frequent Words
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        self.dictionary = {};
+        for i in words:
+            try:
+                self.dictionary[i] += 1;
+            except:
+                self.dictionary[i] = 1;
+        nL = sorted(self.dictionary,key=self.func,reverse=True);
+        while len(nL) > k:
+            nL.pop(-1);
+        return nL;
+    
+    def func(self, x: int) -> int:
+        xcheck = [];
+        for i in (x + " "):
+            xcheck.append(27-ord(i));
+        return (self.dictionary[x],xcheck,len(x));
