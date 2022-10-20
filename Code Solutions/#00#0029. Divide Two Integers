@@ -1,0 +1,49 @@
+#0029. Divide Two Integers
+
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        sign = 1;
+        if (dividend > 0 and divisor < 0) or (dividend < 0 and divisor > 0):
+            sign = -1;
+        dividend = str(abs(dividend));
+        divisor = str(abs(divisor));
+        start = 0;
+        end = len(divisor);
+        divisor = int(divisor);
+        quotient = [];
+        number = 0;
+        while end <= len(dividend):
+            vpointer = 0;
+            if number != 0:
+                number = int(str(abs(number))+dividend[end-1]);
+            else:
+                number = int(dividend[start:end]);
+            if(number) == 0:
+                quotient.append(str(vpointer));
+                start += 1;
+                end += 1;
+                continue;
+            while number - divisor >= 0:
+                number -= divisor;
+                vpointer += 1;
+            if vpointer == 0:
+                quotient.append(str(vpointer));
+                if end != len(dividend):
+                    end += 1;
+                    number = int(dividend[start:end]);
+                    while number - divisor >= 0:
+                        number -= divisor;
+                        vpointer += 1;
+                    start = end - 1;
+            if vpointer != 0:
+                quotient.append(str(vpointer));
+            print(quotient)
+            start += 1;
+            end += 1;
+        quotient = ''.join(quotient);
+        if quotient == '':
+            return 0;
+        if sign > 0:
+            return min(int(quotient),2147483647);
+        if sign < 0:
+            return min(int(quotient),2147483648)*sign;
