@@ -1,0 +1,25 @@
+#0017. Letter Combinations of a Phone Number
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        dictionary = {"2":"abc","3":"def","4":"ghi","5":"jkl","6":"mno","7":"pqrs","8":"tuv","9":"wxyz"};
+        nL = [];
+        if len(digits) == 1:
+            for i in dictionary[digits[0]]:
+                nL.append(i);
+        elif len(digits) == 2:
+            for i in dictionary[digits[0]]:
+                for x in dictionary[digits[1]]:
+                    nL.append(i+x);
+        elif len(digits) == 3:
+            for i in dictionary[digits[0]]:
+                for x in dictionary[digits[1]]:
+                    for y in dictionary[digits[2]]:
+                        nL.append(i+x+y);
+        elif len(digits) == 4:
+            for i in dictionary[digits[0]]:
+                for x in dictionary[digits[1]]:
+                    for y in dictionary[digits[2]]:
+                        for z in dictionary[digits[3]]:
+                            nL.append(i+x+y+z);
+        return list(set(nL));
