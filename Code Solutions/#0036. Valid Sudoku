@@ -1,0 +1,46 @@
+#0036. Valid Sudoku
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # Horizontal Check
+        hdict = {};
+        vdict = {};
+        for i in board:
+            for x in range(len(i)):
+                if i[x] != ".":
+                    try:
+                        hdict[i[x]] += '0';
+                        return False;
+                    except:
+                        hdict[i[x]] = '0';
+                    try:
+                        if i[x] in vdict[x]:
+                            return False;
+                        else:
+                            vdict[x].append(i[x]);
+                    except:
+                        vdict[x] = [i[x]];
+            hdict.clear();
+                
+        #Square Check
+        square = 0;
+        line = 0;
+        sdict = {};
+        while square < 9:
+            vran = (0+square,3+square);
+            hran = (0+line,3+line);
+            for i in board[vran[0]:vran[1]]:
+                for x in i[hran[0]:hran[1]]:
+                    if x != ".":
+                        try:
+                            sdict[x] += '0';
+                            return False;
+                        except:
+                            sdict[x] = '0';
+            sdict.clear();
+            line += 3;
+            if line > 9:
+                line = 0;
+                square += 3;
+
+        return True;
