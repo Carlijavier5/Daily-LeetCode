@@ -1,0 +1,9 @@
+#0069. Sqrt(x)
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        i = 10*int(len(str(x))/2);
+        for i in range(46341):
+            while i*i <= x:
+                i += 1;
+            return i-1;
