@@ -1,0 +1,61 @@
+43. Multiply Strings
+
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+
+Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+Example 1:
+
+Input: num1 = "2", num2 = "3"
+Output: "6"
+
+Example 2:
+
+Input: num1 = "123", num2 = "456"
+Output: "56088"
+
+Solution:
+
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        numL = [];
+        
+        # Decompose strings
+        for i in num1:
+            numL.insert(0,ord(i)-48);
+        for i in range(len(numL)):
+            numL[i] = numL[i]*(10**i);
+        num1 = sum(numL);
+        numL.clear();
+        
+        for i in num2:
+            numL.insert(0,ord(i)-48);
+        for i in range(len(numL)):
+            numL[i] = numL[i]*(10**i);
+        num2 = sum(numL);
+        numL.clear();
+        
+        # Multiply
+        
+        mult = num1 * num2;
+        
+        # Get length of result
+        check = mult;
+        length = 1;
+        while check//10 > 0:
+            check = check//10;
+            length += 1;
+        
+        # Decompose number
+        while length > 0:
+            iteration = mult//10**(length-1);
+            numL.append(iteration);
+            mult -= iteration*10**(length-1);
+            length -= 1;
+            
+        # Stringify
+        
+        for i in range(len(numL)):
+            numL[i] = chr(numL[i]+48);
+        
+        return "".join(numL);
