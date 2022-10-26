@@ -1,0 +1,45 @@
+#0043. Multiply Strings
+
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        numL = [];
+        
+        # Decompose strings
+        for i in num1:
+            numL.insert(0,ord(i)-48);
+        for i in range(len(numL)):
+            numL[i] = numL[i]*(10**i);
+        num1 = sum(numL);
+        numL.clear();
+        
+        for i in num2:
+            numL.insert(0,ord(i)-48);
+        for i in range(len(numL)):
+            numL[i] = numL[i]*(10**i);
+        num2 = sum(numL);
+        numL.clear();
+        
+        # Multiply
+        
+        mult = num1 * num2;
+        
+        # Get length of result
+        check = mult;
+        length = 1;
+        while check//10 > 0:
+            check = check//10;
+            length += 1;
+        
+        # Decompose number
+        while length > 0:
+            iteration = mult//10**(length-1);
+            numL.append(iteration);
+            mult -= iteration*10**(length-1);
+            length -= 1;
+            
+        # Stringify
+        
+        for i in range(len(numL)):
+            numL[i] = chr(numL[i]+48);
+        
+        return "".join(numL);
