@@ -1,0 +1,14 @@
+#0049. Group Anagrams
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dictionary = {};
+        strL = [];
+        for i in strs:
+            try:
+                dictionary[tuple(sorted(list(i)))] += [i];
+            except:
+                dictionary[tuple(sorted(list(i)))] = [i];
+        for i, j in dictionary.items():
+            strL.append(j);
+        return strL;
