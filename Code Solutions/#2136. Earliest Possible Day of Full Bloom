@@ -1,0 +1,22 @@
+#2136. Earliest Possible Day of Full Bloom
+
+class Solution:
+    def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
+        plantL = sorted(list(enumerate(plantTime)),key=self.sorter,reverse=True);
+        plantG = sorted(list(enumerate(growTime)),key=self.sorter,reverse=True);
+        time = 0;
+        growth = 0;
+        last = min(growTime);
+        for i in plantL:
+            if growTime[i[0]] == last:
+                last = (i[0],last);
+        plantG.remove(last);
+        plantG.append(last);
+        for i in plantG:
+            growth = max(0,growth-plantTime[i[0]]);
+            time += plantTime[i[0]];
+            growth = max(i[1],growth);
+        return time + growth;
+    
+    def sorter(self,x: List[int]) -> int:
+        return x[1];
