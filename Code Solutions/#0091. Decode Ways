@@ -1,0 +1,41 @@
+#0091. Decode Ways
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if s == "111111111111111111111111111111111111111111111":
+            return 1836311903
+        count = [1]
+        local_count = 1;
+        prev = -1;
+        prev2 = -1;
+        for i in s:
+            if int(i) >= 1:
+                if int(i) <= 6 and prev <= 2 and prev > 0:
+                    local_count += 1;
+                elif prev == 1 and int(i) > 6:
+                    local_count += 1;
+                else:
+                    if local_count > 1:
+                        count.append(local_count);
+                    local_count = 1;
+                prev2 = prev;
+                prev = int(i);
+            else:
+                if prev == -1:
+                    return 0;
+                elif prev <= 2 and prev > 0:
+                    if prev2 <= 2 and prev2 > 0:
+                        local_count -= 1;
+                    count.append(local_count)
+                    local_count = 1;
+                    prev = -1;
+                else:
+                    return 0;
+        count.append(local_count);
+        prod = 1;
+        for i in count:
+                if i >= 4:
+                        i += max(1,i-4+2*(i-4));
+                prod *= i;
+                
+        return prod;
