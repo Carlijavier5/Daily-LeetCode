@@ -1,0 +1,31 @@
+#0766. Toeplitz Matrix
+
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        anchor = -1;
+        while anchor > -len(matrix[0])-1:
+            y_pointer = 0;
+            x_pointer = anchor;
+            val = matrix[0][anchor];
+            while y_pointer < len(matrix) and x_pointer < 0:
+                if matrix[y_pointer][x_pointer] == val:
+                    y_pointer += 1;
+                    x_pointer += 1;
+                    continue;
+                else:
+                    return False;
+            anchor -= 1;
+        anchor = 0;
+        while anchor < len(matrix):
+            y_pointer = anchor;
+            x_pointer = 0;
+            val = matrix[anchor][0];
+            while y_pointer < len(matrix) and x_pointer < len(matrix[0]):
+                if matrix[y_pointer][x_pointer] == val:
+                    y_pointer += 1;
+                    x_pointer += 1;
+                    continue;
+                else:
+                    return False;
+            anchor += 1;
+        return True;
