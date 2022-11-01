@@ -1,0 +1,29 @@
+#1706. Where Will the Ball Fall
+
+class Solution:
+    def findBall(self, grid: List[List[int]]) -> List[int]:
+        gridAns = [];
+        ball = 0;
+        status = 0;
+        while ball < len(grid[0]):
+            x_pointer = ball;
+            for i in range(len(grid)):
+                if grid[i][x_pointer] == 1:
+                    prev = 1;
+                    x_pointer += 1;
+                elif grid[i][x_pointer] == -1:
+                    prev = -1;
+                    x_pointer -= 1;
+                try:
+                    if grid[i][x_pointer] == prev and x_pointer >= 0:
+                        status = x_pointer;
+                    else:
+                        status = -1;
+                        break;
+                except:
+                    status = -1;
+                    break;
+            gridAns.append(status);
+            status = 1;
+            ball += 1;
+        return gridAns;
