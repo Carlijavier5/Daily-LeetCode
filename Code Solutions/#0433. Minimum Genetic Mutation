@@ -1,0 +1,56 @@
+#0433. Minimum Genetic Mutation
+
+class Solution:
+    def minMutation(self, start: str, end: str, bank: List[str]) -> int:
+        mark = False;
+        pathways = [];
+        try: # Check if an end is reachable, and push it to the end (unnecessary)
+            bank.remove(end);
+            bank.append(end);
+        except:
+            return -1;
+        # Perform first iteration to find sequence in bank
+        for i in bank: # Loop through the bank and find possible next mutation
+            for x in range(len(i)):
+                if i[x] != start[x]: # Compare each letter from bank to start
+                    if mark: # Check if more than one mutation happened
+                        mark = False;
+                        break;
+                    else: # Find first mutation (hopefully the only one)
+                        mark = True;
+            if mark == True: # If the mutation could follow, analyze pathways
+                mark = False; # Reset the mark
+                store = self.geneLine(i, bank, end);
+                if store > 0: # If a pathway was found, append to options
+                    pathways.append(store);
+                else:
+                    continue;
+        if len(pathways) > 0:
+            return min(pathways); # Return shortest pathway, if any
+        return -1;
+        
+    def geneLine(self, begin: str, bank: List[str], target: str) -> int:
+        if begin == target: # If we reached the end, stop recursion
+            return 1;
+        pathways = [];
+        bank_clone = bank[:]; # Create local clone of mutation bank
+        bank_clone.remove(begin); # Delete control value from bank
+        mark = False; 
+        for i in bank_clone: # Find possible mutations in bank
+            for x in range(len(i)):
+                if i[x] != begin[x]: # Letter by letter check, as above
+                    if mark:
+                        mark = False;
+                        break;
+                    else:
+                        mark = True;
+            if mark == True:
+                mark = False;
+                store = self.geneLine(i, bank_clone, target);
+                if store > 0: # If mutation is found, append length of pathway
+                    pathways.append(store+1);
+                else:
+                    continue;
+        if len(pathways) > 0:
+            return min(pathways) # Return optimal pathway
+        return -1;
