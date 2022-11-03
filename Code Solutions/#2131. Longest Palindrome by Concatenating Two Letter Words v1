@@ -1,0 +1,20 @@
+#2131. Longest Palindrome by Concatenating Two Letter Words v1
+
+class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        count = 0;
+        one = False;
+        while len(words) > 0:
+            i = words[0];
+            try:
+                words.remove(i[::-1]);
+                words.remove(i);
+                count += 4;
+            except:
+                try:
+                    words.remove(i);
+                except:
+                    one = True;
+        if one:
+            count += 2;
+        return count;
