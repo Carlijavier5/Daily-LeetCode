@@ -1,0 +1,20 @@
+#0242. Valid Anagram
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        sdict = {};
+        tdict = {};
+        for i in s:
+            try:
+                sdict[i] += 1;
+            except:
+                sdict[i] = 1;
+        for i in t:
+            try:
+                tdict[i] += 1;
+            except:
+                tdict[i] = 1;
+        if sdict == tdict:
+            return True;
+        else:
+            return False;
