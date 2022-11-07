@@ -1,0 +1,11 @@
+#0074. Search a 2D Matrix
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        for i in matrix:
+            if target <= i[-1]:
+                for x in i:
+                    if x == target:
+                        return True;
+                break;
+        return False;
