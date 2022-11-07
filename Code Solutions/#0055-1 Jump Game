@@ -1,4 +1,4 @@
-#0055. Jump Game
+#0055. Jump Game v1
 
 class Solution:
     def canJump(self, nums: List[int]) -> int:
@@ -20,6 +20,6 @@ class Solution:
                 if self.aux(nums,val,index_clone,signature):
                     return True;
             except:
-                return False;
+                continue;
         # print("Dead")
         return False;
