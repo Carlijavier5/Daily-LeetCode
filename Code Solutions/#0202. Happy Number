@@ -1,0 +1,18 @@
+#0202. Happy Number
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        count = 0;
+        try:
+            while n != 1:
+                count += 1;
+                if count == 101:
+                    return False;
+                count += 1;
+                nn = 0;
+                for i in str(n):
+                    nn += int(i)**2;
+                n = nn;
+            return True;
+        except:
+            return False;
