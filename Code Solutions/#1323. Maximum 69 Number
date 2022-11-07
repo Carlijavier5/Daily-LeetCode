@@ -1,0 +1,10 @@
+#1323. Maximum 69 Number
+
+class Solution:
+    def maximum69Number (self, num: int) -> int:
+        strf = str(num);
+        for i, j in enumerate(strf):
+            if j == "6":
+                strf = strf[:i] + "9" + strf[i+1:];
+                break;
+        return strf;
