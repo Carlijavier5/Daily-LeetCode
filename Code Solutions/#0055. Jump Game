@@ -1,0 +1,25 @@
+#0055. Jump Game
+
+class Solution:
+    def canJump(self, nums: List[int]) -> int:
+        # print("New Function")
+        index,val = (0,nums[0]);
+        for i in range(val,0,-1):
+            signature = i;
+            if self.aux(nums,i,index,signature):
+                return True;
+        return False;
+        
+    def aux(self, nums, value,index,signature) -> int:
+        for i in range(value,0,-1):
+            try:
+                index_clone,val = (index+i,nums[index+i]);
+                # print("Value:", value,"I:", i, "Index:",index,"Val:", val,"Signature:",signature)
+                if index_clone == len(nums)-1:
+                    return True;
+                if self.aux(nums,val,index_clone,signature):
+                    return True;
+            except:
+                return False;
+        # print("Dead")
+        return False;
