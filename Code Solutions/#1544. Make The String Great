@@ -1,0 +1,14 @@
+#1544. Make The String Great
+
+class Solution:
+    def makeGood(self, s: str) -> str:
+        try:
+            for i in range(len(s)):
+                if abs(ord(s[i])-ord(s[i+1])) == 32:
+                    val = self.makeGood(s[:i]+s[i+2:]);
+                    if val == None:
+                        return "";
+                    else:
+                        return val;
+        except:
+            return s;
