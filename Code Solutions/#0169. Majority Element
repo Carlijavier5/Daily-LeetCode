@@ -1,0 +1,13 @@
+#0169. Majority Element
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        self.dictionary = {};
+        for i in nums:
+            try:
+                self.dictionary[i] += 1;
+            except:
+                self.dictionary[i] = 1;
+        return max(self.dictionary,key=self.func);
+    def func(self, x):
+        return self.dictionary[x];
