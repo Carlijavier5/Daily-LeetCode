@@ -1,0 +1,15 @@
+#1047. Remove All Adjacent Duplicates In String
+
+class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        i = 0;
+        s = list(s);
+        while i < len(s):
+            try:
+                while s[i] == s[i+1]:
+                    del s[i];
+                    del s[i];
+                    i = max(0,i-1);
+                i += 1;
+            except:
+                return "".join(s);
