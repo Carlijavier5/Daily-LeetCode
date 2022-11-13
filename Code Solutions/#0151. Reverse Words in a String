@@ -1,0 +1,6 @@
+#0151. Reverse Words in a String
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s = list(filter(("").__ne__,s.strip().split(" ")[::-1]));
+        return " ".join(s);
