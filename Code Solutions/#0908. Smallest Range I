@@ -1,0 +1,7 @@
+#0908. Smallest Range I
+
+class Solution:
+    def smallestRangeI(self, nums: List[int], k: int) -> int:
+        imin = min(nums)+abs(k);
+        imax = max(nums)-abs(k);
+        return max(0,imax-imin);
