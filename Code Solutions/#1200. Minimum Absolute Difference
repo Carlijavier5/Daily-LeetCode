@@ -1,0 +1,17 @@
+#1200. Minimum Absolute Difference
+
+class Solution:
+    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+        arr.sort();
+        pairs = [];
+        diff = arr[1]-arr[0];
+        prev = arr[0];
+        for i in arr[1:]:
+            if i - prev < diff:
+                diff = i - prev;
+                pairs.clear();
+                pairs.append([prev,i])
+            elif i - prev == diff:
+                pairs.append([prev,i]);
+            prev = i;
+        return pairs;
