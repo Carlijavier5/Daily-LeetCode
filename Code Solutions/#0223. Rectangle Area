@@ -1,0 +1,43 @@
+#0223. Rectangle Area
+
+class Solution:
+    def computeArea(self, ax1: int, ay1: int, ax2: int, ay2: int, bx1: int, by1: int, bx2: int, by2: int) -> int:
+        area = (ax2 - ax1)*(ay2-ay1)+(bx2-bx1)*(by2-by1);
+        markx1 = 0;
+        markx2 = 0;
+        x1_marked = False;
+        x2_marked = False;
+        if (ax1 >= bx1 and ax1 <= bx2):
+            markx1 = ax1;
+            markx2 = bx2;
+            x1_marked = True;
+        if (ax2 >= bx1 and ax2 <= bx2):
+            markx1 = bx1;
+            markx2 = ax2;
+            x2_marked = True;
+        if x1_marked and x2_marked:
+            markx1 = ax1;
+            markx2 = ax2;
+        marky1 = 0;
+        marky2 = 0;
+        y1_marked = False;
+        y2_marked = False;
+        if (ay1 >= by1 and ay1 <= by2):
+            marky1 = ay1;
+            marky2 = by2;
+            y1_marked = True;
+        if (ay2 >= by1 and ay2 <= by2):
+            marky1 = by1;
+            marky2 = ay2;
+            y2_marked = True;
+        if y1_marked and y2_marked:
+            marky1 = ay1;
+            marky2 = ay2;
+        if bx1 > ax1 and bx2 < ax2:
+            markx1 = bx1;
+            markx2 = bx2;
+        if by1 > ay1 and by2 < ay2:
+            marky1 = by1;
+            marky2 = by2;
+        subtractor = (markx2-markx1)*(marky2-marky1);
+        return area-subtractor;
