@@ -1,0 +1,21 @@
+#1021. Remove Outermost Parentheses
+
+class Solution:
+    def removeOuterParentheses(self, s: str) -> str:
+        s = list(s);
+        mark = 0;
+        pars = [];
+        i = 0;
+        while i < len(s):
+            if s[i] == "(":
+                if len(pars) == 0:
+                    mark = i;
+                pars.append("(");
+            elif s[i] == ")":
+                pars.remove("(");
+            if len(pars) == 0:
+                s.pop(i);
+                s.pop(mark);
+                i -= 2;
+            i += 1;
+        return "".join(s);
