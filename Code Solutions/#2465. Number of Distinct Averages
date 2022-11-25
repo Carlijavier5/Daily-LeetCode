@@ -1,0 +1,13 @@
+#2465. Number of Distinct Averages
+
+class Solution:
+    def distinctAverages(self, nums: List[int]) -> int:
+        avg = [];
+        while len(nums) > 0:
+            total = sum(nums);
+            nums.remove(min(nums));
+            nums.remove(max(nums));
+            n_total = (total-sum(nums))/2;
+            if n_total not in avg:
+                avg.append(n_total);
+        return len(avg);
