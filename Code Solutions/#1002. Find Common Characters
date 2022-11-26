@@ -1,0 +1,13 @@
+#1002. Find Common Characters
+
+class Solution:
+    def commonChars(self, words: List[str]) -> List[str]:
+        pack = list(words[0]);
+        for i in words[1:]:
+            npack = pack[:];
+            for x in i:
+                if x in npack:
+                    npack.remove(x);
+            for y in npack:
+                pack.remove(y);
+        return pack;
