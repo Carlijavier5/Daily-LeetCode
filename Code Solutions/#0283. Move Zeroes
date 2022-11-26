@@ -1,0 +1,14 @@
+#0283. Move Zeroes
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        i = 0;
+        zeroes = [];
+        while i < len(nums):
+            if nums[i] == 0:
+                nums.pop(i);
+                i -= 1;
+                zeroes.append(0);
+            i += 1;
+        for i in zeroes:
+            nums.append(0);
