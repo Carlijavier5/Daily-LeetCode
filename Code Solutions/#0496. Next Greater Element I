@@ -1,0 +1,17 @@
+#0496. Next Greater Element I
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = [];
+        for i in nums1:
+            pos = nums2.index(i);
+            for x in nums2[pos:]:
+                if x > i:
+                    ans.append(x);
+                    break;
+            try:
+                if x <= i:
+                    ans.append(-1);
+            except:
+                ans.append(-1);
+        return ans;
