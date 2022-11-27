@@ -1,0 +1,47 @@
+#0079. Word Search
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        adictb = {};
+        adictw = {};
+        for i in board:
+            for x in i:
+                try:
+                    adictb[x] += 1;
+                except:
+                    adictb[x] = 1;
+        for i in word:
+            try:
+                adictw[i] += 1;
+            except:
+                adictw[i] = 1;
+        for letter,count in adictw.items():
+            try:
+                if adictb[letter] < count:
+                    return False;
+            except:
+                return False;
+        
+        for row in range(len(board)):
+            for letter in range(len(board[row])):
+                if board[row][letter] == word[0]:
+                    if self.cycle(board,word[1:],(row,letter),[(row,letter)]):
+                        return True;
+        return False;
+    
+    def cycle(self,board,word,pos,points):
+        if word == "":
+            return True;
+        if (pos[0] > 0) and (board[pos[0]-1][pos[1]] == word[0]) and ((pos[0]-1,pos[1]) not in points):
+            if self.cycle(board,word[1:],(pos[0]-1,pos[1]),points+[(pos[0]-1,pos[1])]):
+                return True;
+        if (pos[0] < len(board)-1) and (board[pos[0]+1][pos[1]] == word[0]) and ((pos[0]+1,pos[1]) not in points):
+            if self.cycle(board,word[1:],(pos[0]+1,pos[1]),points+[(pos[0]+1,pos[1])]):
+                return True;
+        if (pos[1] > 0) and (board[pos[0]][pos[1]-1] == word[0]) and ((pos[0],pos[1]-1) not in points):
+            if self.cycle(board,word[1:],(pos[0],pos[1]-1),points+[(pos[0],pos[1]-1)]):
+                return True;
+        if (pos[1] < len(board[pos[0]])-1) and (board[pos[0]][pos[1]+1] == word[0])  and ((pos[0],pos[1]+1) not in points):
+            if self.cycle(board,word[1:],(pos[0],pos[1]+1),points+[(pos[0],pos[1]+1)]):
+                return True;
+        return False;
