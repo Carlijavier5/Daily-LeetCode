@@ -1,0 +1,22 @@
+#2225. Find Players With Zero or One Losses
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        adictl = {};
+        for match in matches:
+            try:
+                adictl[match[0]] += 0;
+            except:
+                adictl[match[0]] = 0;
+            try:
+                adictl[match[1]] += 1;
+            except:
+                adictl[match[1]] = 1;
+        winL = [];
+        lossL = [];
+        for key,value in adictl.items():
+            if value == 0:
+                winL.append(key);
+            elif value == 1:
+                lossL.append(key);
+        return [sorted(winL),sorted(lossL)];
