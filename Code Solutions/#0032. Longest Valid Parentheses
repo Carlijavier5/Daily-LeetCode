@@ -1,0 +1,29 @@
+#0032. Longest Valid Parentheses
+
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        openings = [];
+        valid = [];
+        start = 3*(10**4)+1;
+        end = start;
+        for i in range(len(s)):
+            if s[i] == "(":
+                openings.append(i);
+            elif s[i] == ")":
+                try:
+                    start = min(start,openings.pop(-1));
+                    end = i;
+                except:
+                    valid.append(s[start:end+1]);
+                    openings.clear();
+                    start = 3*(10**4)+1;
+                    end = start;
+        if len(openings) > 0:
+            mark = start;
+            for i in openings:
+                valid.append(s[mark:i]);
+                mark = i+1;
+            valid.append(s[mark:]);
+        else: 
+            valid.append(s[start:end+1]);
+        return len(max(valid,key=len));
