@@ -1,0 +1,14 @@
+#0521. Longest Uncommon Subsequence I
+
+class Solution:
+    def findLUSlength(self, a: str, b: str) -> int:
+        valid = False;
+        if len(a) != len(b):
+            return max(len(a),len(b));
+        for i in range(len(a)):
+            if len(list(filter(lambda x: x == a[i],a[i:]))) != len(list(filter(lambda x: x == a[i],b[i:]))):
+                valid = True;
+        if valid:
+            return len(a);
+        else:
+            return -1;
