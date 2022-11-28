@@ -1,0 +1,48 @@
+#1023. Camelcase Matching
+
+class Solution:
+    def camelMatch(self, queries: List[str], pattern: str) -> List[bool]:
+        patL = [];
+        mark = 0;
+        for i in range(len(pattern)):
+            if (ord(pattern[i]) >= 65 and ord(pattern[i]) <= 90):
+                patL.append(list(pattern[mark:i]));
+                mark = i;
+        patL.append(list(pattern[mark:]));
+        
+        ans = [];
+        for query in queries:
+            qunit = 0;
+            exited = False;
+            catL = [];
+            for i in patL:
+                catL.append(i[:]);
+            for i in range(len(query)):
+                if (ord(query[i]) >= 65 and ord(query[i]) <= 90):
+                    if len(catL[qunit]) == 0:
+                        qunit += 1;
+                        try:
+                            if query[i] != catL[qunit][0]:
+                                ans.append(False);
+                                exited = True;
+                                break;
+                            catL[qunit].pop(0);
+                        except:
+                            ans.append(False);
+                            exited = True;
+                            break;
+                    else:
+                        ans.append(False);
+                        exited = True;
+                        break;
+                else:
+                    try:
+                        if query[i] == catL[qunit][0]:
+                            catL[qunit].pop(0);
+                    except:
+                        continue;
+            if qunit == len(patL)-1 and not exited and len(catL[qunit-1]) == 0:
+                ans.append(True);
+            elif not exited:
+                ans.append(False);
+        return ans;
