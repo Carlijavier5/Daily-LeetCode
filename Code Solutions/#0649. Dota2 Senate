@@ -1,0 +1,33 @@
+#0649. Dota2 Senate
+
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        senate = list(senate);
+        i = 0;
+        while len(senate) > 0:
+            if senate[i] == "R":
+                before = senate[:i];
+                after = senate[i:];
+                try:
+                    after.remove("D");
+                except:
+                    try:
+                        before.remove("D");
+                        i -= 1;
+                    except:
+                        return "Radiant";
+            elif senate[i] == "D":
+                before = senate[:i];
+                after = senate[i:];
+                try:
+                    after.remove("R");
+                except:
+                    try:
+                        before.remove("R");
+                        i -= 1;
+                    except:
+                        return "Dire";
+            senate = before + after;
+            i += 1;
+            if i == len(senate):
+                i = 0;
