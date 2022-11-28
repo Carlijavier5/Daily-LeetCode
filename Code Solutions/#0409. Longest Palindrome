@@ -1,0 +1,19 @@
+#0409. Longest Palindrome
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        adict = {};
+        count = 0;
+        odd = 0;
+        for i in s:
+            try:
+                adict[i] += 1;
+            except:
+                adict[i] = 1;
+        for i,j in adict.items():
+            if j % 2 != 0:
+                count += j-1;
+                odd = 1;
+            else:
+                count += j;
+        return count + odd;
