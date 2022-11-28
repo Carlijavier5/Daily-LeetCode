@@ -1,0 +1,11 @@
+#0495. Teemo Attacking
+
+class Solution:
+    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+        time = 0;
+        for i in range(len(timeSeries)):
+            try:
+                time += min(timeSeries[i+1]-timeSeries[i],duration);
+            except:
+                time += duration;
+        return time;
