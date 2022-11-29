@@ -1,0 +1,37 @@
+#0065. Valid Number
+
+class Solution:
+    def isNumber(self, s: str) -> bool:
+        dotted = False;
+        eed =  False;
+        signed = False;
+        inted = False;
+        began = True;
+        for i in s:
+            if i == "." and not dotted:
+                dotted = True;
+                began =  False;
+            elif i == "." and dotted:
+                return False;
+            elif i in "eE" and not eed and inted:
+                eed = True;
+                signed = False;
+                dotted = True;
+                inted = False;
+                began = True;
+            elif i in "eE" and (eed or not inted):
+                return False;
+            elif i in "+-" and not signed and began:
+                signed = True;
+            elif i in "+-" and (signed or not began):
+                return False;
+            elif i.isdigit():
+                if not inted:
+                    inted = True;
+                if began:
+                    began = False;
+            elif i.isalpha():
+                return False;
+        if not inted:
+            return False;
+        return True;
