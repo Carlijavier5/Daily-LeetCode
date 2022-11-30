@@ -1,0 +1,18 @@
+#1207. Unique Number of Occurrences
+
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        adict1 = {};
+        adict2 = {};
+        for i in arr:
+            try:
+                adict1[i] += 1;
+            except:
+                adict1[i] = 1;
+        for i, j in adict1.items():
+            try:
+                adict2[j] += 1;
+                return False;
+            except:
+                adict2[j] = 1;
+        return True;
