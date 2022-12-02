@@ -1,0 +1,276 @@
+#0273. Integer to English Words
+
+class Solution:
+    def numberToWords(self, num: int) -> str:
+        string = "";
+        arr = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+        num = str(num)[::-1];
+        for i in range(len(num)):
+            arr[i] = num[i];
+            
+        # First digit
+        if arr[1] != "1":
+            if arr[0] == "0" and arr[1] == -1:
+                return "Zero";
+            elif arr[0] == "1":
+                string = "One" + string;
+            elif arr[0] == "2":
+                string = "Two" + string;
+            elif arr[0] == "3":
+                string = "Three" + string;
+            elif arr[0] == "4":
+                string = "Four" + string;
+            elif arr[0] == "5":
+                string = "Five" + string;
+            elif arr[0] == "6":
+                string = "Six" + string;
+            elif arr[0] == "7":
+                string = "Seven" + string;
+            elif arr[0] == "8":
+                string = "Eight" + string;
+            elif arr[0] == "9":
+                string = "Nine" + string;
+        else:
+            if arr[0] == "0":
+                string = "Ten" + string;
+            elif arr[0] == "1":
+                string = "Eleven" + string;
+            elif arr[0] == "2":
+                string = "Twelve" + string;
+            elif arr[0] == "3":
+                string = "Thirteen" + string;
+            elif arr[0] == "4":
+                string = "Fourteen" + string;
+            elif arr[0] == "5":
+                string = "Fifteen" + string;
+            elif arr[0] == "6":
+                string = "Sixteen" + string;
+            elif arr[0] == "7":
+                string = "Seventeen" + string;
+            elif arr[0] == "8":
+                string = "Eighteen" + string;
+            elif arr[0] == "9":
+                string = "Nineteen" + string;
+        
+        # Second digit
+        if arr[1] == "2":
+            string = "Twenty " + string;
+        elif arr[1] == "3":
+            string = "Thirty " + string;
+        elif arr[1] == "4":
+            string = "Forty " + string;
+        elif arr[1] == "5":
+            string = "Fifty " + string;
+        elif arr[1] == "6":
+            string = "Sixty " + string;
+        elif arr[1] == "7":
+            string = "Seventy " + string;
+        elif arr[1] == "8":
+            string = "Eighty " + string;
+        elif arr[1] == "9":
+            string = "Ninety " + string;
+        
+        #Third Digit
+        if arr[2] != -1:
+            if arr[2] != "0":
+                string = "Hundred " + string;
+            if arr[2] == "1":
+                string = "One " + string;
+            elif arr[2] == "2":
+                string = "Two " + string;
+            elif arr[2] == "3":
+                string = "Three " + string;
+            elif arr[2] == "4":
+                string = "Four " + string;
+            elif arr[2] == "5":
+                string = "Five " + string;
+            elif arr[2] == "6":
+                string = "Six " + string;
+            elif arr[2] == "7":
+                string = "Seven " + string;
+            elif arr[2] == "8":
+                string = "Eight " + string;
+            elif arr[2] == "9":
+                string = "Nine " + string;
+        
+        # Fourth digit
+        if arr [3] != -1:
+            if arr[3] != "0" or arr[4] != "0" or arr[5] != "0":
+                string = "Thousand " + string;
+            if arr[4] != "1":
+                if arr[3] == "1":
+                    string = "One " + string;
+                elif arr[3] == "2":
+                    string = "Two " + string;
+                elif arr[3] == "3":
+                    string = "Three " + string;
+                elif arr[3] == "4":
+                    string = "Four " + string;
+                elif arr[3] == "5":
+                    string = "Five " + string;
+                elif arr[3] == "6":
+                    string = "Six " + string;
+                elif arr[3] == "7":
+                    string = "Seven " + string;
+                elif arr[3] == "8":
+                    string = "Eight " + string;
+                elif arr[3] == "9":
+                    string = "Nine " + string;
+            else:
+                if arr[3] == "0":
+                    string = "Ten " + string;
+                elif arr[3] == "1":
+                    string = "Eleven " + string;
+                elif arr[3] == "2":
+                    string = "Twelve " + string;
+                elif arr[3] == "3":
+                    string = "Thirteen " + string;
+                elif arr[3] == "4":
+                    string = "Fourteen " + string;
+                elif arr[3] == "5":
+                    string = "Fifteen " + string;
+                elif arr[3] == "6":
+                    string = "Sixteen " + string;
+                elif arr[3] == "7":
+                    string = "Seventeen " + string;
+                elif arr[3] == "8":
+                    string = "Eighteen " + string;
+                elif arr[3] == "9":
+                    string = "Nineteen " + string;
+        
+        # Fifth Digit
+        if arr[4] == "2":
+            string = "Twenty " + string;
+        elif arr[4] == "3":
+            string = "Thirty " + string;
+        elif arr[4] == "4":
+            string = "Forty " + string;
+        elif arr[4] == "5":
+            string = "Fifty " + string;
+        elif arr[4] == "6":
+            string = "Sixty " + string;
+        elif arr[4] == "7":
+            string = "Seventy " + string;
+        elif arr[4] == "8":
+            string = "Eighty " + string;
+        elif arr[4] == "9":
+            string = "Ninety " + string;
+            
+        # Sixth Digit
+        if arr[5] != -1:
+            if arr[5] != "0":
+                string = "Hundred " + string;
+            if arr[5] == "1":
+                string = "One " + string;
+            elif arr[5] == "2":
+                string = "Two " + string;
+            elif arr[5] == "3":
+                string = "Three " + string;
+            elif arr[5] == "4":
+                string = "Four " + string;
+            elif arr[5] == "5":
+                string = "Five " + string;
+            elif arr[5] == "6":
+                string = "Six " + string;
+            elif arr[5] == "7":
+                string = "Seven " + string;
+            elif arr[5] == "8":
+                string = "Eight " + string;
+            elif arr[5] == "9":
+                string = "Nine " + string;
+        
+        # Seventh Digit
+        if arr [6] != -1:
+            if arr[6] != "0" or arr[7] != "0" or arr[8] != "0":
+                string = "Million " + string;
+            if arr[7] != "1":
+                if arr[6] == "1":
+                    string = "One " + string;
+                elif arr[6] == "2":
+                    string = "Two " + string;
+                elif arr[6] == "3":
+                    string = "Three " + string;
+                elif arr[6] == "4":
+                    string = "Four " + string;
+                elif arr[6] == "5":
+                    string = "Five " + string;
+                elif arr[6] == "6":
+                    string = "Six " + string;
+                elif arr[6] == "7":
+                    string = "Seven " + string;
+                elif arr[6] == "8":
+                    string = "Eight " + string;
+                elif arr[6] == "9":
+                    string = "Nine " + string;
+            else:
+                if arr[6] == "0":
+                    string = "Ten " + string;
+                elif arr[6] == "1":
+                    string = "Eleven " + string;
+                elif arr[6] == "2":
+                    string = "Twelve " + string;
+                elif arr[6] == "3":
+                    string = "Thirteen " + string;
+                elif arr[6] == "4":
+                    string = "Fourteen " + string;
+                elif arr[6] == "5":
+                    string = "Fifteen " + string;
+                elif arr[6] == "6":
+                    string = "Sixteen " + string;
+                elif arr[6] == "7":
+                    string = "Seventeen " + string;
+                elif arr[6] == "8":
+                    string = "Eighteen " + string;
+                elif arr[6] == "9":
+                    string = "Nineteen " + string;
+        
+        # Eighth Digit
+        if arr[7] == "2":
+            string = "Twenty " + string;
+        elif arr[7] == "3":
+            string = "Thirty " + string;
+        elif arr[7] == "4":
+            string = "Forty " + string;
+        elif arr[7] == "5":
+            string = "Fifty " + string;
+        elif arr[7] == "6":
+            string = "Sixty " + string;
+        elif arr[7] == "7":
+            string = "Seventy " + string;
+        elif arr[7] == "8":
+            string = "Eighty " + string;
+        elif arr[7] == "9":
+            string = "Ninety " + string;
+            
+        # Nineth Digit
+        if arr[8] != -1:
+            if arr[8] != "0":
+                string = "Hundred " + string;
+            if arr[8] == "1":
+                string = "One " + string;
+            elif arr[8] == "2":
+                string = "Two " + string;
+            elif arr[8] == "3":
+                string = "Three " + string;
+            elif arr[8] == "4":
+                string = "Four " + string;
+            elif arr[8] == "5":
+                string = "Five " + string;
+            elif arr[8] == "6":
+                string = "Six " + string;
+            elif arr[8] == "7":
+                string = "Seven " + string;
+            elif arr[8] == "8":
+                string = "Eight " + string;
+            elif arr[8] == "9":
+                string = "Nine " + string;
+        
+        # Tenth Digit
+        if arr [9] != -1:
+            string = "Billion " + string;
+            if arr[9] == "1":
+                string = "One " + string;
+            elif arr[9] == "2":
+                string = "Two " + string;
+        
+        return string.strip();
