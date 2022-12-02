@@ -1,0 +1,32 @@
+#1657. Determine if Two Strings Are Close
+
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        adict1 = {};
+        adict2 = {};
+        for i in word1:
+            try:
+                adict1[i] += 1;
+            except:
+                adict1[i] = 1;
+        for i in word2:
+            try:
+                adict2[i] += 1;
+            except:
+                adict2[i] = 1;
+        list1 = [];
+        list3 = [];
+        list2 = [];
+        list4 = [];
+        for i,j in adict1.items():
+            list1.append(j);
+            if i not in list3:
+                list3.append(i);
+        for i,j in adict2.items():
+            list2.append(j);
+            if i not in list4:
+                list4.append(i);
+        if (sorted(list1) == sorted(list2)) and (sorted(list3) == sorted(list4)):
+            return True;
+        else:
+            return False;
