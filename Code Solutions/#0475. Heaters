@@ -1,0 +1,25 @@
+#0475. Heaters
+
+class Solution:
+    
+    from math import floor
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        houses = sorted(houses);
+        heaters = sorted(heaters);
+        maximum = 0;
+        
+        for i in houses:
+            try:
+                while abs(i - heaters[0]) >= abs(i - heaters[1]):
+                    heaters.pop(0);
+                if abs(i - heaters[0]) > maximum:
+                    maximum = abs(i - heaters[0]);
+            except:
+                if abs(houses[-1] - heaters[0]) > maximum:
+                    maximum = abs(houses[-1] - heaters[0]);
+                if abs(i - heaters[0]) > maximum:
+                    maximum = abs(i - heaters[0]);
+                else:
+                    return maximum;
+                break;
+        return maximum;
