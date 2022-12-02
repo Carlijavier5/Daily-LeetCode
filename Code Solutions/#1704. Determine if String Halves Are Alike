@@ -1,0 +1,17 @@
+#1704. Determine if String Halves Are Alike
+
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        a = s[:len(s)//2];
+        b = s[len(s)//2:];
+        vowelA = 0;
+        for i in a:
+            if i in "aeiouAEIOU":
+                vowelA += 1;
+        vowelB = 0;
+        for i in b:
+            if i in "aeiouAEIOU":
+                vowelB += 1;
+        if vowelA == vowelB:
+            return True;
+        return False;
