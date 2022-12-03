@@ -1,4 +1,4 @@
-#0945. Minimum Increment to Make Array Unique v1 (TLE)
+#0945. Minimum Increment to Make Array Unique (TLE)
 
 class Solution:
     def minIncrementForUnique(self, nums: List[int]) -> int:
@@ -9,13 +9,12 @@ class Solution:
             up = 1;
             try:
                 while nums[i] == nums[i+up]:
+                    count += 1;
+                    nums[i+up] += 1;
                     up += 1;
             except:
                 if i == len(nums)-1:
                     break;
-            for x in range(i+1,i+up):
-                count += 1;
-                nums[x] += 1;
             i += 1;
             up = 1;
         return count;
