@@ -1,0 +1,20 @@
+#0945. Minimum Increment to Make Array Unique v2 (TLE)
+
+class Solution:
+    def minIncrementForUnique(self, nums: List[int]) -> int:
+        nums = sorted(nums);
+        i = 0;
+        count = 0;
+        while i < len(nums):
+            up = 1;
+            try:
+                while nums[i] == nums[i+up]:
+                    count += 1;
+                    nums[i+up] += 1;
+                    up += 1;
+            except:
+                if i == len(nums)-1:
+                    break;
+            i += 1;
+            up = 1;
+        return count;
