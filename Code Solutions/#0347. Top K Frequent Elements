@@ -1,0 +1,20 @@
+#0347. Top K Frequent Elements
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        adict = {};
+        for i in nums:
+            try:
+                adict[i] += 1;
+            except:
+                adict[i] = 1;
+        tupL = sorted(list(adict.items()),key=self.sorter,reverse=True);
+        endList = [];
+        index = 0;
+        for i in range(k):
+            endList.append(tupL[index][0]);
+            index += 1;
+        return endList;
+        
+    def sorter(self,x):
+        return x[1];
