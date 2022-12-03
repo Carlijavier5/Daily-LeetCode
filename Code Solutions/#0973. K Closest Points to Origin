@@ -1,0 +1,17 @@
+#0973. K Closest Points to Origin
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        distances = [];
+        for i in points:
+            distances.append([i,(i[0]**2 + i[1]**2)**(1/2)]);
+        distances = sorted(distances,key=self.sorter);
+        endLine = [];
+        index = 0;
+        for i in range(k):
+            endLine.append(distances[index][0]);
+            index += 1;
+        return endLine;
+    
+    def sorter(self,x):
+        return x[1];
