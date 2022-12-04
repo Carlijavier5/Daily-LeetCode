@@ -1,0 +1,37 @@
+#0621. Task Scheduler
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        adict = {};
+        for i in tasks:
+            try:
+                adict[i] += 1;
+            except:
+                adict[i] = 1;
+        tasks = [];
+        for i,j in adict.items():
+            tasks.append(j);
+        count = 0;
+        tasks = sorted(tasks,reverse=True);
+        while len(tasks) > 0:
+            cd = n;
+            tasks[0] -= 1;
+            count += 1;
+            pointer = 1;
+            if tasks[0] == 0:
+                tasks.pop(0);
+                cd = 0;
+            while cd != 0:
+                try:
+                    tasks[pointer] -= 1;
+                    if tasks[pointer] == 0:
+                        tasks.pop(pointer);
+                        pointer -= 1;
+                    pointer += 1;
+                    cd -= 1;
+                    count += 1;
+                except:
+                    count += cd;
+                    break;
+            tasks = sorted(tasks,reverse=True);
+        return count;
