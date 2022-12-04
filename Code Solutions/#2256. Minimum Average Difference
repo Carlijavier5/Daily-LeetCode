@@ -1,0 +1,21 @@
+#2256. Minimum Average Difference
+
+class Solution:
+    def minimumAverageDifference(self, nums: List[int]) -> int:
+        averages = [];
+        totalL = nums[0];
+        totalR = sum(nums[1:]);
+        countL = 1;
+        countR = len(nums)-1;
+        try:
+            averages.append((abs(totalL-totalR//countR),0));
+        except:
+            return 0;
+        for i in range(1,len(nums)):
+            totalL += nums[i];
+            totalR -= nums[i];
+            countL += 1;
+            if countR > 1:
+                countR -= 1;
+            averages.append((abs((totalL//countL)-(totalR//countR)),i));
+        return sorted(averages)[0][1];
