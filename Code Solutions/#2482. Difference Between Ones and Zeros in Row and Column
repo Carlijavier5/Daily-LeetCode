@@ -1,0 +1,28 @@
+#2482. Difference Between Ones and Zeros in Row and Column
+
+class Solution:
+    def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
+        cols = [];
+        for i in range(len(grid[0])):
+            zeroes = 0;
+            ones = 0;
+            for x in range(len(grid)):
+                if grid[x][i] == 0:
+                    zeroes += 1;
+                else:
+                    ones += 1;
+            cols.append([zeroes,ones]);
+        rows = [];
+        for i in range(len(grid)):
+            zeroes = 0;
+            ones = 0;
+            for x in grid[i]:
+                if x == 0:
+                    zeroes += 1;
+                else:
+                    ones += 1;
+            rows.append([zeroes,ones]);
+        for i in range(len(grid)):
+            for x in range(len(grid[i])):
+                grid[i][x] = rows[i][1]+cols[x][1]-rows[i][0]-cols[x][0];
+        return grid; 
