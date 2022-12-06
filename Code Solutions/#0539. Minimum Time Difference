@@ -1,0 +1,13 @@
+#0539. Minimum Time Difference
+
+class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        for i in range(len(timePoints)):
+            timePoints[i] = int(timePoints[i][:2])*60+int(timePoints[i][3:]);
+        timePoints.sort();
+        distances = [];
+        for i in range(len(timePoints)-1):
+            distances.append(timePoints[i+1]-timePoints[i]);
+        distances.append((1440-timePoints[-1])+timePoints[0]);
+        distances.sort();
+        return distances[0];
