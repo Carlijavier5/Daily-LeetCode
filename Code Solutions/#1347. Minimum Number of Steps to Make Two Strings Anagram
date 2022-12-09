@@ -1,0 +1,26 @@
+#1347. Minimum Number of Steps to Make Two Strings Anagram
+
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        adict1 = {};
+        adict2 = {};
+        for i in s:
+            try:
+                adict1[i] += 1;
+            except:
+                adict1[i] = 1;
+        for i in t:
+            try:
+                adict2[i] += 1;
+            except:
+                adict2[i] = 1;
+        poppable = [];
+        for i,j in adict2.items():
+            try:
+                adict1[i] = max(0,adict1[i]-j);
+            except:
+                continue;
+        total = 0;
+        for i,j in adict1.items():
+            total += j;
+        return total;
