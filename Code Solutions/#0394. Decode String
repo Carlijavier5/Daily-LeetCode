@@ -1,0 +1,33 @@
+#0394. Decode String
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        nstr = "";
+        i = 0;
+        openings = [];
+        while i < len(s):
+            if s[i].isdigit():
+                start = i;
+                dend = i+1;
+                if s[i+2].isdigit() and s[i+1].isdigit():
+                    dend += 2;
+                    i += 2;
+                elif s[i+1].isdigit():
+                    dend += 1;
+                    i += 1;
+                for i in range(i+2,len(s)):
+                    if s[i] == "[":
+                        openings.append(0);
+                    elif s[i] == "]" and len(openings) > 0:
+                        openings.remove(0);
+                    elif s[i] == "]":
+                        end = i;
+                        break;
+                i = end;
+                nstr += s[dend+1:end]*int(s[start:dend]);
+            else:
+                nstr += s[i];
+            i += 1;
+        if "[" in nstr:
+            return self.decodeString(nstr);
+        return nstr;
