@@ -1,0 +1,46 @@
+#0289. Game of Life
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        nboard = [];
+        for row in range(len(board)):
+            nboard.append([]);
+            for col in range(len(board[row])):
+                ppl = 0;
+                # Top
+                if row > 0 and board[row-1][col] == 1:
+                    ppl += 1;
+                # Top Left
+                if row > 0  and col > 0 and board[row-1][col-1] == 1:
+                    ppl += 1;
+                # Bottom
+                if row < len(board)-1 and board[row+1][col] == 1:
+                    ppl += 1;
+                # Bottom Right
+                if row < len(board)-1 and col < len(board[row])-1 and board[row+1][col+1] == 1:
+                    ppl += 1;
+                # Left
+                if col > 0 and board[row][col-1] == 1:
+                    ppl += 1;
+                # Bottom Left
+                if  row < len(board)-1 and col > 0 and board[row+1][col-1] == 1:
+                    ppl += 1;
+                # Right
+                if col < len(board[row])-1 and board[row][col+1] == 1:
+                    ppl += 1;
+                # Top Right
+                if row > 0 and col < len(board[row])-1 and board[row-1][col+1] == 1:
+                    ppl += 1;
+                nboard[row].append(ppl);
+        print(nboard)
+        for row in range(len(board)):
+            for col in range(len(board[row])):
+                if board[row][col] == 0 and nboard[row][col] == 3:
+                    board[row][col] = 1;
+                elif board[row][col] == 1 and nboard[row][col] < 2:
+                    board[row][col] = 0;
+                elif board[row][col] == 1 and nboard[row][col] > 3:
+                    board[row][col] = 0;
