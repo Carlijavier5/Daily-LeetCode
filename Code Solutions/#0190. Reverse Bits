@@ -1,0 +1,19 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        nclone = n;
+        exp = 31;
+        nstring = "";
+        while nclone > 0:
+            if nclone//(2**exp) == 0:
+                nstring += "0";
+            else:
+                nclone -= 2**exp;
+                nstring += "1";
+            exp -= 1;
+        
+        index = 0;
+        number = 0;
+        for i in nstring:
+            number += int(i)*(2**index)
+            index += 1;
+        return number;
