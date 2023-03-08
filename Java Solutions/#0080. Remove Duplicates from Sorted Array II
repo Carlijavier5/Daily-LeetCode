@@ -1,0 +1,28 @@
+#0080. Remove Duplicates from Sorted Array II
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int count = 1;
+        int current = Integer.MAX_VALUE;
+        int validAmount = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            if ((nums[i] == current) && (count < 2)) {
+                count++;
+            } else if (nums[i] == current) {
+                nums[i] = Integer.MAX_VALUE;
+                validAmount--;
+            } else {
+                current = nums[i];
+                count = 1;
+            }
+        }
+        count = 0;
+        for (int i = 0; i < validAmount; i++) {
+            while (nums[i + count] == Integer.MAX_VALUE) {
+                count++;
+            }
+            nums[i] = nums[i + count];
+        }
+        return validAmount;
+    }
+}
