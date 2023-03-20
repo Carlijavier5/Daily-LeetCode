@@ -1,0 +1,48 @@
+#0054. Spiral Matrix
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int count =  matrix.length * matrix[0].length;
+        List<Integer> res = new ArrayList<Integer>();
+        int rCurrent = 0;
+        int cCurrent = 0;
+        int rowTake = 0;
+        int colTake = 0;
+        // Odd values are the amount from the right and bottom;
+        // Even values are the amount from left and top;
+        while (count > 0) {
+            if (rowTake % 2 == 0) {
+                rCurrent = rowTake/2;
+                for (int i = colTake/2; i < matrix[rCurrent].length - (colTake - colTake/2); i++) {
+                    res.add(matrix[rCurrent][i]);
+                    count--;
+                }
+            } else {
+                rCurrent = matrix.length - (rowTake - rowTake/2);
+                for (int i = matrix[rCurrent].length - (colTake - colTake/2) - 1; i >= colTake/2; i--) {
+                    res.add(matrix[rCurrent][i]);
+                    count--;
+                }
+            }
+            
+            rowTake++;
+            if (count > 0) {
+                if (colTake % 2 == 0) {
+                    cCurrent = matrix[rCurrent].length - (colTake - colTake/2) - 1;
+                    for (int i = rowTake - rowTake/2; i < matrix.length - rowTake/2; i++) {
+                        res.add(matrix[i][cCurrent]);
+                        count--;
+                    }    
+                } else {
+                    cCurrent = colTake/2;
+                    for (int i = matrix.length - rowTake/2 - 1; i >= rowTake - rowTake/2; i--) {
+                        res.add(matrix[i][cCurrent]);
+                        count--;
+                    }
+                }
+            }
+            colTake++;
+        }
+        return res;
+    }
+}
